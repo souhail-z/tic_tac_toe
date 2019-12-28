@@ -1,0 +1,134 @@
+souhail jamali
+moncef ajmani
+haytam moujib
+
+#include <stdio.h>
+#include <stdlib.h>
+#define a 3
+#include <conio.h>
+
+
+int pla=1,name=1;
+char mat[a][a]={{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+int main()
+{
+
+    char p;
+
+int i=1;
+while(i <= 9){
+    afficher(a,a,mat);
+    printf("player %d chose the position :",name);
+    scanf("%c",&p);
+
+    placer(p,a,a,mat);
+    if(check() == 1){
+        printf("player %d win!",name);
+        getch();
+        break;
+            }
+
+    pla++;
+
+
+    if(pla%2 !=0){
+        name = 1;
+    }else{
+        name=2;
+    }
+
+    i++;
+
+    printf("\n");
+   fflush(stdin);
+
+   system("cls");
+}
+if(i==10){
+    printf("draw");
+}
+    return 0;
+}
+int check(){
+    int win;
+    int x = line(a,a,mat);
+    int y = col(a,a,mat);
+    int z = diag(a,a,mat);
+    if(x == 1 || y==1 || z==1){
+        win=1;
+
+    }
+
+    return win;
+}
+int line(int i,int j,char mat1[i][j]){
+    for(int i=0;i< a ;i++){
+        int j=0;
+        if(mat1[i][j]==mat1[i][j+1] && mat1[i][j]==mat1[i][j+2]){
+            return 1;
+        }
+    }
+}
+int  col(int i,int j,char mat1[i][j]){
+    for(int j=0;j< a ;j++){
+        int i=0;
+        if(mat1[i][j]==mat1[i+1][j] && mat1[i+2][j]==mat1[i][j]){
+            return 1;
+        }
+    }
+}
+
+int diag(int i,int j,char mat1[i][j]){
+    int k=0,l=2,x=0;
+    if(mat1[k][l] == mat1[k+1][l-1] && mat1[k][l] == mat1[k+2][l-2]){
+        return 1;
+    }
+    if(mat1[x][x] == mat1[x+1][x+1] && mat1[x][x]==mat1[x+2][x+2]){
+        return 1;
+    }
+}
+
+void afficher(int i,int j,char mat1[i][j])
+    {
+        for(i=0;i<a;i++)
+        {
+            for(j=0;j<a;j++)
+               {
+                   printf("%c ",mat1[i][j]);
+
+               }
+            printf("\n");
+        }
+
+    }
+
+
+
+
+
+
+void placer(char pos,int i,int j, char mat1[i][j] )
+{
+
+    for(i=0;i<a;i++)
+        {
+            for(j=0;j<a;j++)
+            {
+                if (mat1[i][j]==pos)
+                {
+                  if(pla%2 !=0)
+                  {
+                      mat1[i][j]='X';
+                  }
+                  else
+                  {
+                      mat1[i][j]='O';
+                  }
+                }
+            }
+
+        }
+
+
+}
+
